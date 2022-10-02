@@ -1,0 +1,11 @@
+<h3>
+<p>comments works!</p>
+<button (click)="BackToPost()">BackToPost</button><br>
+<div *ngFor="let i of comment.comments">
+
+    <div *ngIf="i.postId == postId">
+      the comment :  {{i.body}}
+    </div>
+   
+</div>
+</h3>

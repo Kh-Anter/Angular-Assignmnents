@@ -1,0 +1,54 @@
+<p>register works!</p>
+<div class="theDiv">
+    <form class="col-4 pos theForm" #registerForm="ngForm" onvalidate (ngSubmit)="SignUp()">
+        <div class="form-outline mb-4">
+            <label class="form-label" for="userName">User name</label>
+            <input required [class.is-invalid]="userName.touched && userName.invalid" type="text" pattern="^[a-zA-Z]*" name="user-Name"  [(ngModel)]="registerModel.userName" id="userName" #userName="ngModel" class="form-control" />
+            <div *ngIf="userName.errors">
+                <small class="text-danger" *ngIf="userName.errors?.['required']">User name required !</small>
+                <small class="text-danger" *ngIf="userName.errors?.['pattern']">User name contains only capital and small characters !</small>
+            </div>
+            
+          </div> 
+      <div class="form-outline mb-4">
+        <label class="form-label" for="email">Email address</label>
+        <input type="email" name="email" required [class.is-invaled]="email.touched && email.invalid" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"  [(ngModel)]="registerModel.email" #email="ngModel" id="email" class="form-control" />
+      <div *ngIf="email.errors">
+      <small class="text-danger" *ngIf="email.errors?.['pattern']">Email must be like this "aaa@bb.com"</small>
+      <small class="text-danger" *ngIf="email.errors?.['required']">Email required</small>
+      </div>
+    </div>
+    
+      <div class="form-outline mb-4">
+        <label class="form-label" for="pass">Password</label>
+        <input type="password" name="password" [class.is-invaled]="password.touched && password.invalid" required pattern=".{11}" [(ngModel)]="registerModel.password" id="pass" #password="ngModel" class="form-control" />
+      <div *ngIf="password.errors">
+        <small class="text-danger" *ngIf="password.errors?.['required']">Password required </small>
+        <small class="text-danger" *ngIf="password.errors?.['pattern']">Password must be 11 digit</small>
+      </div>
+    </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="confirmPass">Confirm Password</label>
+        <input type="password" name="confPass" [class.is-invalid]="confPass.touched && confPass.invalid" required [(ngModel)]="registerModel.confirmPass" id="confirmPass" #confPass="ngModel" class="form-control" />
+        <small class="text-danger" *ngIf="confPass.errors?.['required']">Confirm password required</small>
+        <small class="text-danger" *ngIf="registerModel.confirmPass != registerModel.password && !confPass.errors?.['required'] ">Dismatch password</small>
+    </div>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="whereYouHear">Where you hear about us</label>
+        <select id="whereYouHear" name="whereYouHear" class="custom-select">
+            <option *ngFor="let o of whereYouHearOptions">
+                {{o}}
+            </option>
+
+        </select>
+      </div>
+    
+      <!-- Submit button -->
+      <div class="justify-content-center">
+      <input type="submit" disabled *ngIf="registerForm.form.invalid || registerModel.password!=registerModel.confirmPass" class="btn btn-danger btn-block mb-4"  value="Signup" width="50%">
+      <input type="submit" *ngIf="!registerForm.form.invalid && registerModel.password==registerModel.confirmPass" class="btn btn-success btn-block mb-4"  value="Signup" width="50%">
+    </div>
+    </form>
+    </div>
+    <br><br>

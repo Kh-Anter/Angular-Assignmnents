@@ -1,0 +1,37 @@
+<p>notes works!</p>
+<div class="theDiv">
+    <form [formGroup]="notesForm" class="theForm">
+        <label for="name">Name</label><br>
+        <input type="text" formControlName="name" [class.is-invalid]="name?.touched && name?.invalid" id="name" ><br>
+        <div *ngIf="name?.invalid && name?.touched">
+            <small class="text-danger" *ngIf="name?.errors?.['required']">Name required !</small>
+            <small class="text-danger" *ngIf="name?.errors?.['forbiddenName']">You cannt use 'admin or adminstrator'</small>
+        </div><br>
+        <label class="form-label" for="products">Select product</label>
+        <select id="whereYouHear" formControlName="whereYouHearOptions" id="products" class="custom-select" formControlName="product">
+            <option *ngFor="let o of myProducts">
+                {{o}}
+            </option>
+        </select><br><br>
+            <div *ngIf="discountValue">
+                <label for="discountNum">Enter discount value</label><br>
+                <input type="text" id="discountNum" [class.is-invalid]="discount?.touched && discount?.invalid" formControlName="discount"><br>
+                <div *ngIf="discount?.touched && discount?.invalid">
+                    <small class="text-danger"  *ngIf="discount?.errors?.['required']">Discount required</small>
+                    <small class="text-danger"  *ngIf="discount?.errors?.['pattern']">please enter a percentage value and without '%'</small>
+                </div>
+            <br><br>
+        </div>
+
+        <label for="check">discount &nbsp;</label>
+        <input type="checkbox" name="" id="check" (change)="changeCheckBox()">
+        <br><br>
+        <div formArrayName="alternativeComment" *ngFor="let email of alternativeComment.controls; let i=index">
+            <label>Comment # {{i+1}}</label>
+            <input type="text" class="form-control" [formControlName]="i">
+            <button (click)="deleteComment(i)" class="btn btn-danger">-</button>
+       </div>
+        <button (click)="addComment()" type="button" class="btn btn-success btn-sm m-2">Comment</button>
+    </form>
+</div>
+<br><br>    

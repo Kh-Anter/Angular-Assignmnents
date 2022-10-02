@@ -1,0 +1,65 @@
+<h1>product works!</h1>
+<!-- <h1> {{StroreName | uppercase}} </h1>
+<img [src]="itemImageUrl" width="200px" height="200px"> -->
+<!-- <div *ngIf="isNoDiscount; then h3Block ;else  "></div> -->
+<!-- <h3 #h3Block>We offer an explicit discount of: {{Discount}}</h3>
+<br>
+<select name="cars" id="cars">
+    <option *ngFor="let item of CategoryList" value="volvo">{{item.name}}</option>
+</select>
+<br>
+<div *ngIf="showMyDiv; then myDivTamp ; else tableTamp" ></div>
+<ng-template #tableTamp>
+<table style="width: 40%">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>price</th>
+    </tr>
+    <tr *ngFor="let item of ProductList">
+        <th>{{item.id}}</th>
+        <th>{{item.name}}</th>
+        <th>{{item.quantity}}</th>
+        <th>{{item.price}}</th>
+    </tr>
+</table>
+</ng-template>
+<br>
+<label>Enter your name</label>
+
+<ng-template #myDivTamp>
+    <div #myDiv>Thanks for purchasing from our Store {{fullName}}</div>
+</ng-template>
+
+<input type="text" [(ngModel)]="fullName"/>
+{{fullName}}
+<br>
+
+<button (click)="showOrHide()">Next</button><br>
+
+<h1>{{newDiscount | percent}}</h1>
+ -->
+
+
+
+<table style="width: 40%">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>price</th>
+        
+    </tr>
+    <tr *ngFor="let item of ProductList">
+        <th>{{item.id}}</th>
+        <th>{{item.name}}</th>
+        <th>{{item.quantity}}</th>
+        <th>{{item.price}}</th>
+        <button (click)="showProDetail(item.id)">show details</button>
+    </tr>
+</table>
+
+<button (click)="renderValue()">Show products</button>
+
+

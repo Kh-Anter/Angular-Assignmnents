@@ -1,0 +1,27 @@
+
+<br> <br>
+<div class="theDiv">
+<form class="col-4 pos theForm" #loginForm="ngForm" onvalidate (ngSubmit)="login()">
+  <div class="form-outline mb-4">
+    <label class="form-label" required for="email-input">User name</label>
+    <input type="email" pattern="^[a-zA-Z]*" [class.is-invalid]="username.invalid && username.touched" [(ngModel)]="loginModel.username" #username="ngModel" id="email-input" name="username" class="form-control" required/>
+    <div>
+    <small class="text-danger" *ngIf="username.errors?.['required']">Please enter username</small>
+    <small class="text-danger" *ngIf="username.errors?.['pattern']">Wrong username !</small>
+  </div>
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="password-input">Password</label>
+    <input type="password" [(ngModel)]="loginModel.password" [class.is-invalid]="password.invalid && password.touched" #password="ngModel" id="password-input" name="password" class="form-control" required/>
+    <small class="text-danger" *ngIf="password.errors?.['required']">Please enter the password</small>
+  </div>
+  <br>
+  <!-- Submit button -->
+  <div class="justify-content-center">
+    <input type="submit" disabled *ngIf="loginForm.form.invalid" class="btn btn-danger btn-block mb-4"  value="Login" >
+    <input type="submit" *ngIf="!loginForm.form.invalid" class="btn btn-success btn-block mb-4"  value="Login" >
+  </div>
+</form>
+</div>
+<br><br>

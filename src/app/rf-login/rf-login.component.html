@@ -1,0 +1,27 @@
+<p>rf-login works!</p>
+<br> <br>
+<div class="theDiv">
+<form class="col-4 pos theForm" [formGroup]="registerationForm" >
+  <div class="form-outline mb-4">
+    <label class="form-label" for="email-input">User name</label>
+    <input type="email" [class.is-invalid]="userName?.invalid && userName?.touched" formControlName="username"  class="form-control"/>
+<div *ngIf="userName?.invalid && userName?.touched">
+    <small class="text-danger" *ngIf="userName?.errors?.['required']">Please enter username</small>
+    <small class="text-danger" *ngIf="userName?.errors?.['pattern']">Wrong username !</small>
+  </div>
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="password-input">Password</label>
+    <input type="password" [class.is-invalid]="password?.invalid && password?.touched" formControlName="password" class="form-control" />
+    <small class="text-danger" *ngIf="password?.touched && password?.errors?.['required']">Please enter the password</small>
+  </div>
+  <br>
+  <!-- Submit button -->
+  <div class="justify-content-center">
+    <input type="submit" disabled *ngIf="registerationForm.invalid" class="btn btn-danger btn-block mb-4" (click)="login()"  value="Login" >
+    <input type="submit" *ngIf="!registerationForm.invalid" class="btn btn-success btn-block mb-4" (click)="login()"  value="Login" >
+  </div>
+</form>
+</div>
+<br><br>

@@ -1,0 +1,11 @@
+<h3>
+<h1>posts works!</h1>
+<div *ngFor="let post of postsList">
+   <div [class.selected]="post.postId==selectedPost">
+     {{post.title}}  ,  {{post.postId}}&nbsp; &nbsp; &nbsp;
+     <button (click)="goToCommentPage(post.postId)">comments</button>
+    </div>
+     
+</div>
+
+<button (click)="addPost()">click to post</button></h3>
